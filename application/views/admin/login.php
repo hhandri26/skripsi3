@@ -9,8 +9,8 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href=""><b>Elearning SMK  </b></a><br>
-				<a href=""><b>AN-NUR DEPOK </b></a>
+				<a href=""><b>Aplikasi Pembelajaran  </b></a><br>
+				<a href=""><b>Bahasa Indonesia </b></a>
 			</div>
 		  	<div class="login-box-body">
 		    	<img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/img/logo.png');?>" >

@@ -1,4 +1,4 @@
-<?php if($this->session->userdata('level') !== null ){;?>
+<?php if($this->session->userdata('level') !== null || $this->session->userdata('kd_guru') !== null ){;?>
 <a href="javascript:;" class="add-modal btn btn-info btn-sm" data-toggle ="modal" data-target="#add-tb">
      <i class="fa fa-plus"></i>
 </a>
@@ -99,7 +99,7 @@
                 <th>Kelas</th>
                 <th>Mata Pelajaran</th>
                 <th>Nama Materi</th>
-                <?php if($this->session->userdata('level') !== null ){;?>
+                <?php if($this->session->userdata('level') !== null || $this->session->userdata('kd_guru') !== null ){;?>
                 <th>Aksi</th>
                 <?php }?>
             </tr>
@@ -111,7 +111,7 @@
             <td><?php echo $row->nama_ruangan ;?></td>
             <td><?php echo $row->nama_mapel ;?></td>
             <td> <a href="<?php echo base_url('assets/materi/'.$row->file);?>" target="_blank"> <?php echo $row->nama ;?> </a></td>
-            <?php if($this->session->userdata('level') !== null ){;?>
+            <?php if($this->session->userdata('level') !== null || $this->session->userdata('kd_guru') !== null ){;?>
             <td>
                 <a  href ="<?php echo base_url('master/edit_materi/'.$row->id);?>"  class="btn btn-info btn-sm">
                     <i class="glyphicon glyphicon-pencil"></i> 
