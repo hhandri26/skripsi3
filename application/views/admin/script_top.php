@@ -19,4 +19,6 @@
  <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/select2/select2.min.css">
  <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/select2/select2-bootstrap.css">
  <script src="<?php echo base_url();?>assets/admin/select2/select2.min.js"></script>
- <script  src="<?php echo base_url();?>assets/admin/select2/select2_locale_id.js"></script>
+ <script src="<?php echo base_url();?>assets/admin/select2/select2_locale_id.js"></script>
+ <script src="<?php echo base_url();?>assets/js/axios.min.js"></script>
+ <script src="<?php echo base_url();?>assets/js/vue.js"></script>

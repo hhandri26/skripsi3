@@ -150,7 +150,7 @@
           </li>
         </ul>
       </li>
-      <li class="treeview <?php echo ($nav_top == 'penilaian')? $class :""; ?>">
+      <li class="treeview <?php echo ($nav_top == 'nilai')? $class :""; ?>">
         <a href="#">
           <i class="fa fa-table"></i>
           <span>Penilaian</span>
@@ -159,8 +159,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
-            <a href="#"><i class="fa fa-ellipsis-v"></i>Input Nilai Siswa</a>
+          <li <?php echo ($nav_sub == 'nilai')? $active :""; ?>>
+            <a href="<?php echo base_url('penilaian');?>"><i class="fa fa-ellipsis-v"></i>Input Nilai Siswa</a>
           </li>
         </ul>
       </li>
