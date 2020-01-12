@@ -43,6 +43,8 @@ class Penilaian extends CI_Controller {
         $data['nav_sub']				= 'nilai';
         $this->load->view('admin/home', $data);
 
+        
+
     }
 
     public function get_data_nilai($id_kelas){
