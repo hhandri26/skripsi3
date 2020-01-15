@@ -139,7 +139,7 @@
             var div     = $(event.relatedTarget)
             var modal   = $(this)
             modal.find('#id').attr("value",div.data('id'));
-            modal.find('#tgl').attr("value",div.data('tgl'));
+            modal.find('#nama').attr("value",div.data('nama'));
         });
     });
 </script>

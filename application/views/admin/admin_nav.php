@@ -82,7 +82,7 @@
     <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
         <a href="#">
           <i class="fa fa-file-pdf-o"></i>
-          <span>Cetak</span>
+          <span>Laporan</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -90,6 +90,9 @@
         <ul class="treeview-menu">
           <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
             <a href="<?php echo base_url('admin/cetak_mapel_murid/'.$this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Cetak Jadwal Mata Pelajaran</a>
+          </li>
+          <li <?php echo ($nav_sub == 'nilai')? $active :""; ?>>
+            <a href="<?php echo base_url('penilaian/laporan_nilai/'.$this->session->userdata('id_siswa').'/'.$this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Laporan Nilai</a>
           </li>
         </ul>
       </li>

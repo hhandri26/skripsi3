@@ -94,15 +94,73 @@ class Penilaian extends CI_Controller {
         }
     }
 
-    public function edit_nilai(){
+    public function edit_nilai($id, $id_kelas){
+        $data['id_kelas']               = $id_kelas;
+        $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+        $data['pertemuan']              = $this->crud_models->get_all_data('tbl_penilaian')->result();
+        $data['siswa']                  = $this->db->get_where('tb_murid', array('kelas' => $id_kelas))->result();
+        $data['edit']                  = $this->Penilaian_models->get_data_nilai_edit($id,$id_kelas)->row();
+        $data['script_top']    			= 'admin/script_top';
+        $data['script_bottom']  		= 'admin/script_btm';
+        $data['admin_nav']				= 'admin/admin_nav';
+        $data['judul'] 					= 'Penilaian';
+        $data['sub_judul'] 				= 'input nilai';
+        $data['content'] 				= 'penilaian/edit';
+        $data['nav_top']				= 'nilai';
+        $data['nav_sub']				= 'nilai';
+        $this->load->view('admin/home', $data);
 
     }
 
     public function update_nilai(){
+        $id       = $this->input->post('id');
+        $id_kelas = $this->input->post('id_kelas');
+        $data = array(
+            "id_penilaian" => $this->input->post('id_penilaian'),
+            "id_siswa"     => $this->input->post('id_siswa'),
+            "id_mapel"	   => $this->input->post('id_mapel'),
+            "id_kelas"     => $this->input->post('id_kelas'),
+            "score"        =>$this->input->post('score')
+        );
+
+        if($this->crud_models->edit_data($data, $id,'tbl_penilaian_siswa')){
+            $this->session->set_flashdata('info', 'data berhasil di tambah!');				
+            redirect('penilaian/assign_nilai/'.$id_kelas);
+
+        }else{
+            $this->session->set_flashdata('danger', 'kesalahan menginput data');				
+            redirect('penilaian/assign_nilai/'.$id_kelas);
+        }
 
     }
 
     public function delete_nilai(){
+        $id 		= $this->input->post('id');
+        $id_kelas   = $this->input->post('id_kelas');
+        if($this->crud_models->delete_data($id,'tbl_penilaian_siswa')){
+            $this->session->set_flashdata('info', 'data berhasil di update!');				
+            redirect('penilaian/assign_nilai/'.$id_kelas);
+
+        }else{
+            $this->session->set_flashdata('danger', 'kesalahan menginput data');				
+            redirect('penilaian/assign_nilai/'.$id_kelas);
+        }
         
+    }
+
+    public function laporan_nilai($id, $kelas){
+        $data['id_kelas']               = $kelas;
+        $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+        $data['table']                  = $this->Penilaian_models->get_data_nilai_per_siswa($id,$kelas)->result();
+        $data['script_top']    			= 'admin/script_top';
+        $data['script_bottom']  		= 'admin/script_btm';
+        $data['admin_nav']				= 'admin/admin_nav';
+        $data['judul'] 					= 'Penilaian';
+        $data['sub_judul'] 				= 'Hasil';
+        $data['content'] 				= 'penilaian/laporan_siswa';
+        $data['nav_top']				= 'Laporan';
+        $data['nav_sub']				= 'nilai';
+        $this->load->view('admin/home', $data);
+
     }
 }

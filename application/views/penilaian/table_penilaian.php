@@ -17,8 +17,6 @@
                             <option value="">- Pilih Pertemuan -</option>
                             <?php $no=1; foreach($pertemuan as $row){?>
                                 <option value="<?php echo $row->id;?>"> <?php echo date('d F, Y', strtotime($row->tgl));?> </option>
-                                
-
                             <?php }?>
                            </select>
                         </div>
@@ -55,6 +53,38 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Hapus -->
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="delete-data" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Anda Yakin Hapus Ini?</h4>
+            </div>
+            <form class="form-horizontal" action="<?php echo base_url('penilaian/delete_nilai')?>" method="post" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                        <div class="form-group">
+                           <label class="col-lg-4 col-sm-4 control-label">Nama Murid</label>
+                            <div class="col-lg-8">
+                                <input type="hidden" id="id" name="id">
+                                <input type="hidden" id="id_kelas" name="id_kelas">
+                                <input type="text" name="nama_murid" id="nama_murid" class="form-control" readonly>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="submit" class="btn btn-danger" value="Hapus">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="box-body">
     <div class="row">
         <div class="col-md-12">
@@ -117,13 +147,14 @@
                     <td><?php echo date('d F, Y', strtotime($row->tgl)) ;?></td>
                     <td><?php echo $row->score ;?></td>
                     <td>
-                        <a  href                 ="#"
+                        <a  href                 ="<?php echo base_url('penilaian/edit_nilai/'.$row->id.'/'.$id_kelas);?>"
                             class="show-modal btn btn-info btn-sm">
                             <i class="glyphicon glyphicon-pencil"></i> 
                         </a>
 
                         <a  href                 ="javascript:;"
                             data-id              ="<?php echo $row->id ?>"
+                            data-id_kelas        ="<?php echo $id_kelas ?>"
                             data-nama_murid      ="<?php echo $row->nama_murid ?>"
                             data-toggle          ="modal"
                             data-target          ="#delete-data"
@@ -167,5 +198,22 @@ var formData = new Vue({
 
 
 })
+
+
+    $(document).ready(function() {
+       
+
+         // modal delete data
+          $('#delete-data').on('show.bs.modal', function (event) {
+            var div     = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#id_kelas').attr("value",div.data('id_kelas'));
+            modal.find('#nama_murid').attr("value",div.data('nama_murid'));
+           
+           
+        });
+    });
+
 
 </script>

@@ -40,7 +40,8 @@
 					{
 						$sess = array('username' => $row->nama_murid,
 									  'password' => $row->password,
-									  'kelas' => $row->kelas
+									  'kelas' 	 => $row->kelas,
+									  'id_siswa' => $row->id
 									);
 						$this->session->set_userdata($sess);
 						$this->session->set_flashdata('info', 'login sukses');

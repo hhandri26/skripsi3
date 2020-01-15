@@ -553,14 +553,78 @@ class Master extends CI_Controller
             }
 
             public function edit_materi($id){
+                $data['mapel']                  = $this->crud_models->get_all_data('tb_mapel')->result();
+                $data['kelas']                  = $this->crud_models->get_all_data('tb_ruangan')->result();
+                $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+                $data['edit']                   = $this->master_models->get_materi_edit($id)->row();
+
+				$data['script_top']    			= 'admin/script_top';
+				$data['script_bottom']  		= 'admin/script_btm';
+				$data['admin_nav']				= 'admin/admin_nav';
+				$data['judul'] 					= 'Master';
+				$data['sub_judul'] 				= 'Materi';
+				$data['content'] 				= 'master/edit_materi';
+				$data['nav_top']				= 'master';
+				$data['nav_sub']				= 'materi';
+				$this->load->view('admin/home', $data);
+
 
             }
 
             public function update_materi(){
+                $id 		= $this->input->post('id');
+                $config =  array(
+					'upload_path'     => "./assets/materi/",
+					'allowed_types'   => "gif|jpg|png|jpeg|pdf",
+                    'encrypt_name'    => TRUE, 
+                    'file_name'       =>uniqid()
+                );
+                $this->load->library('upload',$config);
+				$this->upload->initialize($config);
+					
+
+				if ( ! $this->upload->do_upload('file')){
+                   
+                    $get         = $this->db->get_where('tbl_materi', array('id' => $id))->row();
+                    $nama_file   = $get->file;
+				} else {
+                    $upload_data  	=$this->upload->data();
+                    $nama_file    	=$upload_data['file_name'];
+                    $ukuran_file  	=$upload_data['file_size'];
+                   
+                }
+                
+                $data = array(
+                    "id_mapel"	=> $this->input->post('id_mapel'),
+                    "id_kelas"  => $this->input->post('id_kelas'),
+                    "nama"	    => $this->input->post('nama'),
+                    "file"      => $nama_file
+                );
+
+                if($this->crud_models->edit_data($data,$id,'tbl_materi')){
+                    $this->session->set_flashdata('info', 'data berhasil di update!');				
+                    redirect('master/materi');
+
+                }else{
+                    $this->session->set_flashdata('danger', 'kesalahan menginput data');				
+                    redirect('master/materi');
+                }
+
+               
+
 
             }
 
             public function delete_materi(){
+                $id 		= $this->input->post('id');
+                if($this->crud_models->delete_data($id,'tbl_materi')){
+					$this->session->set_flashdata('info', 'data berhasil di update!');				
+					redirect('master/materi');
+
+				}else{
+					$this->session->set_flashdata('danger', 'kesalahan menginput data');				
+					redirect('master/materi');
+				}
 
             }
 

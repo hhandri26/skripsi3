@@ -99,5 +99,16 @@ class Master_models extends CI_Model
 
     }
 
+    public function get_materi_edit($id){
+        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file ,b.id as id_mapel, b.nama_mapel, c.nama_ruangan');
+        $this->db->from('tbl_materi a');
+        $this->db->join('tb_mapel b','b.id = a.id_mapel','left');
+        $this->db->join('tb_ruangan c','c.id = a.id_kelas','left');
+        $this->db->where('a.id',$id);
+        return $this->db->get();
+        
+
+    }
+
     
 }
