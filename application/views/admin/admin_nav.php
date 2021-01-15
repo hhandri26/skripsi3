@@ -38,13 +38,13 @@
           <a href="<?php echo base_url('master/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
         </li>
         <li <?php echo ($nav_sub == 'jadwal')? $active :""; ?>>
-          <a href="<?php echo base_url('master/jadwal');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Mata Pelajaran</a>
+          <a href="<?php echo base_url('master/jadwal');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Cooperative Learning</a>
         </li>
         <li <?php echo ($nav_sub == 'penilaian')? $active :""; ?>>
           <a href="<?php echo base_url('master/penilaian');?>"><i class="fa fa-ellipsis-v"></i>Master Penilaian</a>
         </li>
         <li <?php echo ($nav_sub == 'materi')? $active :""; ?>>
-          <a href="<?php echo base_url('master/materi');?>"><i class="fa fa-ellipsis-v"></i>Master Materi</a>
+          <a href="<?php echo base_url('master/materi');?>"><i class="fa fa-ellipsis-v"></i>Materi Cooperative Learning</a>
         </li>
        
       </ul>
@@ -99,14 +99,14 @@
       <li class="treeview <?php echo ($nav_top == 'diskusi')? $class :""; ?>">
         <a href="#">
           <i class="fa fa-weixin"></i>
-          <span>Diskusi</span>
+          <span>Diskusi Cooperative Learning</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
           <li <?php echo ($nav_sub == 'diskusi_table')? $active :""; ?>>
-            <a href="<?php echo base_url('diskusi/start_diskusi/'. $this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Diskusi Pelajaran</a>
+            <a href="<?php echo base_url('diskusi/start_diskusi/'. $this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Diskusi Cooperative Learning</a>
           </li>
         </ul>
       </li>

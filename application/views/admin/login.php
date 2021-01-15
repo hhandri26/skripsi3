@@ -9,11 +9,11 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href=""><b>Aplikasi Pembelajaran  </b></a><br>
-				<a href=""><b>Bahasa Indonesia </b></a>
+				<a href=""><b>COOPERATIVE LEARNING  </b></a><br>
+				<a href=""><b>SMKN 1 Rangkas Bitung </b></a>
 			</div>
 		  	<div class="login-box-body">
-		    	<img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/img/logo.png');?>" >
+		    	<img class="profile-user-img img-responsive " src="<?php echo base_url('assets/img/Logo-smkn_1_Rangkasbitung.jpg');?>" >
 				    <?php echo form_open('login/getlogin'); ?>
 				    	<?php if($this->session->flashdata('info')): ?>
 							<div><?php echo $this->session->flashdata('info'); ?></div>

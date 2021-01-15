@@ -115,6 +115,26 @@
 
 		}
 
+		public function count_murid(){
+			$query = $this->db->query('SELECT * FROM tb_murid');
+			return $query->num_rows();
+		}
+
+		public function count_guru(){
+			$query = $this->db->query('SELECT * FROM tb_guru');
+			return $query->num_rows();
+		}
+
+		public function count_materi(){
+			$query = $this->db->query('SELECT * FROM tbl_materi');
+			return $query->num_rows();
+		}
+
+		public function count_kelas(){
+			$query = $this->db->query('SELECT * FROM tb_ruangan');
+			return $query->num_rows();
+		}
+
 	
 
 

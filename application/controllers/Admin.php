@@ -22,6 +22,11 @@ class Admin extends CI_Controller
 			{
 				$this->security_models->get_security();
 				$data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+				$data['count_murid'] 			= $this->admin_models->count_murid();
+				$data['count_guru'] 			= $this->admin_models->count_guru();
+				$data['count_materi'] 			= $this->admin_models->count_materi();
+				$data['count_kelas'] 			= $this->admin_models->count_kelas();
+				$data['jadwal'] 				= $this->master_models->get_jadwal()->result();
 				$data['script_top']    			= 'admin/script_top';
 				$data['script_bottom']  		= 'admin/script_btm';
 				$data['admin_nav']				= 'admin/admin_nav';
