@@ -135,6 +135,10 @@
 			return $query->num_rows();
 		}
 
+		public function get_nilai_kelas($id){
+			
+		}
+
 	
 
 

@@ -29,10 +29,26 @@ class Diskusi extends CI_Controller
             $this->load->view('admin/home', $data);
         }
 
-        public function start_diskusi($id_kelas){
+        public function materi_diskusi($id_kelas){
             $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();       
             $data['id_kelas']               = $id_kelas;
-            $data['diskusi']                = $this->Diskusi_models->get_data_diskusi($id_kelas)->result(); 
+            $data['materi']                 = $this->Diskusi_models->get_data_materi($id_kelas)->result(); 
+            $data['script_top']    			= 'admin/script_top';
+            $data['script_bottom']  		= 'admin/script_btm';
+            $data['admin_nav']				= 'admin/admin_nav';
+            $data['judul'] 					= 'Diskusi';
+            $data['sub_judul'] 				= 'Mulai Diskusi';
+            $data['content'] 				= 'diskusi/materi';
+            $data['nav_top']				= 'diskusi';
+            $data['nav_sub']				= 'diskusi_table';
+            $this->load->view('admin/home', $data);
+        }
+
+        public function start_diskusi($materi){
+            $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();       
+            $data['id_kelas']               = $this->db->get_where('tbl_materi', array('id' => $materi))->row();;
+            $data['id_materi']              = $materi;
+            $data['diskusi']                = $this->Diskusi_models->get_data_diskusi($materi)->result(); 
             $data['script_top']    			= 'admin/script_top';
             $data['script_bottom']  		= 'admin/script_btm';
             $data['admin_nav']				= 'admin/admin_nav';
@@ -54,6 +70,7 @@ class Diskusi extends CI_Controller
             $data = array(
                 "id_kelas"	=> $id_kelas,
                 "id_mapel"  => $this->input->post('id_mapel'),
+                "id_materi"  => $this->input->post('id_materi'),
                 "nama"	    => $this->input->post('nama'),
                 "des"       => $this->input->post('des'),
                 "tgl"       => $tgl,               

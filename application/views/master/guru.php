@@ -24,6 +24,24 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">No Tlpn</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="no_tlpn" name="no_tlpn">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">agama</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="agama" name="agama">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
                         <div class="col-lg-8">
                             <select class="form-control" id="nama_guru" name="jenis_kelamin">
@@ -71,58 +89,69 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 class="modal-title">Edit</h4>
+                <h4 class="modal-title">Lihat</h4>
             </div>
             <form class="form-horizontal" action="<?php echo base_url('master/edit_guru')?>" method="post" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-lg-4 col-sm-4 control-label">Kode Guru</label>
+                            <label class="col-lg-4 col-sm-4 control-label">Nip Guru</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="kd_guru" name="kd_guru">
+                                <input type="text" class="form-control" id="kd_guru" readonly="" name="kd_guru">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label">Nama Guru</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="nama_guru" name="nama_guru">
+                                <input type="text" class="form-control" id="nama_guru" readonly="" name="nama_guru">
                                 <input type="hidden" id="id" name="id">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                        <label class="col-lg-4 col-sm-4 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="email" name="email" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">No Tlpn</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="no_tlpn" name="no_tlpn" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">agama</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="agama" name="agama" readonly="">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">jenis kelamin</label>
                             <div class="col-lg-8">
-                                <select class="form-control" id="nama_guru" name="jenis_kelamin">
-                                    <option value="L">Laki - laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
+                                <input type="text" class="form-control" id="jenis_kelamin" readonly="" name="jenis_kelamin">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
                             <div class="col-lg-8">
-                                <select class="form-control" id="mapel" name="mapel">
-                                    <?php foreach ($mapel as $row){;?>
-                                        <option value="<?php echo $row->id;?>"><?php echo $row->nama_mapel;?></option>
-                                    <?php };?>
-                                </select>
+                                <input type="text" class="form-control" id="nama_mapel" readonly="" name="nama_mapel">
                             </div>
                         </div>
+                        
+                     
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label">Alamat</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="alamat" name="alamat">
+                                <input type="text" class="form-control" id="alamat" readonly="" name="alamat">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-4 control-label">Tgl Lahir</label>
                             <div class="col-lg-8">
-                                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                                <input type="date" class="form-control" id="tgl_lahir" readonly="" name="tgl_lahir">
                             </div>
                         </div>
                     </div>
                 <div class="modal-footer">
-                    
-                    <input type="submit" name="submit" class="btn btn-info" value="Simpan">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
                 </div>
             </form>
@@ -180,9 +209,16 @@
             <td><?php echo $row->jenis_kelamin ;?></td>
             <td><?php echo $row->nama_mapel ;?></td>
             <td>
+                <a href="<?php echo base_url('master/form_edit_guru/'.$row->id);?>" class="btn btn-info btn-sm">
+                    <i class="glyphicon glyphicon-pencil"></i> 
+                </a>
+
                 <a  href                 ="javascript:;"
                     data-kd_guru         ="<?php echo $row->kd_guru ?>"
                     data-nama_guru       ="<?php echo $row->nama_guru ?>"
+                    data-email       ="<?php echo $row->email ?>"
+                    data-no_tlpn       ="<?php echo $row->no_tlpn ?>"
+                    data-agama       ="<?php echo $row->agama ?>"
                     data-jenis_kelamin   ="<?php echo $row->jenis_kelamin ?>"
                     data-nama_mapel      ="<?php echo $row->nama_mapel ?>"
                     data-mapel           ="<?php echo $row->mapel ?>"
@@ -192,7 +228,7 @@
                     data-toggle          ="modal"
                     data-target          ="#edit-data"
                     class="show-modal btn btn-info btn-sm">
-                    <i class="glyphicon glyphicon-pencil"></i> 
+                    <i class="fa fa-eye"></i> 
                 </a>
 
                 <a  href                 ="javascript:;"
@@ -217,6 +253,9 @@
             var modal   = $(this)
             modal.find('#kd_guru').attr("value",div.data('kd_guru'));
             modal.find('#nama_guru').attr("value",div.data('nama_guru'));
+            modal.find('#email').attr("value",div.data('email'));
+            modal.find('#no_tlpn').attr("value",div.data('no_tlpn'));
+            modal.find('#agama').attr("value",div.data('agama'));
             modal.find('#jenis_kelamin').attr("value",div.data('jenis_kelamin'));
             modal.find('#nama_mapel').attr("value",div.data('nama_mapel'));
             modal.find('#mapel').attr("value",div.data('mapel'));

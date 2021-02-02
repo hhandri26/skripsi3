@@ -19,36 +19,51 @@
     <li class="treeview <?php echo ($nav_top == 'master')? $class :""; ?>">
       <a href="#">
         <i class="fa fa-university"></i>
-        <span>Master</span>
+        <span>Data Management</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
         <li <?php echo ($nav_sub == 'guru')? $active :""; ?>>
-          <a href="<?php echo base_url('master/guru');?>"><i class="fa fa-ellipsis-v"></i>Data Guru</a>
+          <a href="<?php echo base_url('master/guru');?>"><i class="fa fa-ellipsis-v"></i>Management Guru</a>
         </li>
-        <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
-          <a href="<?php echo base_url('master/mapel');?>"><i class="fa fa-ellipsis-v"></i>Data Mata Pelajaran</a>
-        </li>
+        <!-- <li <?php// echo ($nav_sub == 'mapel')? $active :""; ?>>
+          <a href="<?php //echo base_url('master/mapel');?>"><i class="fa fa-ellipsis-v"></i>Data Mata Pelajaran</a>
+        </li> -->
         <li <?php echo ($nav_sub == 'ruangan')? $active :""; ?>>
-          <a href="<?php echo base_url('master/ruangan');?>"><i class="fa fa-ellipsis-v"></i>Data Ruangan</a>
+          <a href="<?php echo base_url('master/ruangan');?>"><i class="fa fa-ellipsis-v"></i>Management Kelas</a>
         </li>
         <li <?php echo ($nav_sub == 'murid')? $active :""; ?>>
-          <a href="<?php echo base_url('master/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
+          <a href="<?php echo base_url('master/murid');?>"><i class="fa fa-ellipsis-v"></i>Management Murid</a>
         </li>
+        <!-- <li <?php //echo ($nav_sub == 'penilaian')? $active :""; ?>>
+          <a href="<?php //echo base_url('master/penilaian');?>"><i class="fa fa-ellipsis-v"></i>Management Nilai</a>
+        </li> -->
         <li <?php echo ($nav_sub == 'jadwal')? $active :""; ?>>
           <a href="<?php echo base_url('master/jadwal');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Cooperative Learning</a>
         </li>
-        <li <?php echo ($nav_sub == 'penilaian')? $active :""; ?>>
-          <a href="<?php echo base_url('master/penilaian');?>"><i class="fa fa-ellipsis-v"></i>Master Penilaian</a>
-        </li>
+       
         <li <?php echo ($nav_sub == 'materi')? $active :""; ?>>
           <a href="<?php echo base_url('master/materi');?>"><i class="fa fa-ellipsis-v"></i>Materi Cooperative Learning</a>
         </li>
        
       </ul>
     </li>
+    <li class="treeview <?php echo ($nav_top == 'nilai')? $class :""; ?>">
+        <a href="#">
+          <i class="fa fa-table"></i>
+          <span>Penilaian</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo ($nav_sub == 'nilai')? $active :""; ?>>
+            <a href="<?php echo base_url('penilaian');?>"><i class="fa fa-ellipsis-v"></i>Nilai Siswa</a>
+          </li>
+        </ul>
+      </li>
    
 
     <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
@@ -106,7 +121,7 @@
         </a>
         <ul class="treeview-menu">
           <li <?php echo ($nav_sub == 'diskusi_table')? $active :""; ?>>
-            <a href="<?php echo base_url('diskusi/start_diskusi/'. $this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Diskusi Cooperative Learning</a>
+            <a href="<?php echo base_url('diskusi/materi_diskusi/'. $this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Diskusi Cooperative Learning</a>
           </li>
         </ul>
       </li>

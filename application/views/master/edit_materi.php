@@ -40,6 +40,12 @@
                 <input type="file" class="form-control" id="file" name="file">                           
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-lg-4 col-sm-4 control-label">Deskripsi Materi</label>
+            <div class="col-lg-8">                        
+                <textarea name="" id="" cols="30" rows="10" class="form-control" name="deskripsi"><?php echo $edit->deskripsi;?></textarea>                           
+            </div>
+        </div>
         
     </div>
     <div class="modal-footer">

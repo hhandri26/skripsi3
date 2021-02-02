@@ -41,19 +41,44 @@
     tbody tr:hover{
       background: #EAE9F5
     }
+    .wrapper{
+      display: flex;
+
+    }
+    .text{
+      position: absolute; 
+      font-size: 20px; 
+      padding: 30px 40px 40px 150px;
+    text-align: CENTER;
+
+    }
   </style>
 </head>
 <body>
+<div class="wrapper">
+    <div class="logo">
+    <img src="<?php echo base_url('assets/img/Logo-smkn_1_Rangkasbitung.jpg');?>" width="70"  alt="">
+    </div>
+    <div class="text">
+      <span>
+      SEKOLAH MENEGAH KEJURUAN NEGRI 1
+      <br>
+      JL.DEWI SARTIKA NO.61 L RANGKASBITUNG 42314 TELP./FAX.(0252) 201895
+
+
+      </span>
+    </div>
+  </div>
 	<div id="outtable">
 	  <table>
 	  	<thead>
 	  		<tr>
-	  			<th class="short">#</th>
+	  			<th class="short">No</th>
                     <th class="normal">Nama Guru</th>
                     <th class="normal">Mata Pelajaran</th>
                     <th class="normal">Kelas</th>
-                    <th class="normal">Hari</th>
-                    <th class="normal">jam</th>
+                    <th class="normal">Mulai</th>
+                    <th class="normal">Selesai</th>
 	  		    </tr>
 	  	</thead>
 	  	<tbody>
@@ -64,8 +89,8 @@
                     <td><?php echo $row->nama_guru ;?></td>
                     <td><?php echo $row->nama_mapel ;?></td>
                     <td><?php echo $row->kelas ;?></td>
-                    <td><?php echo $row->hari ;?></td>
-                    <td><?php echo $row->waktu ;?></td>
+                    <td><?php echo $row->date_start ;?></td>
+                    <td><?php echo $row->date_end ;?></td>
 	  		  </tr>
 	  		<?php $no++; ?>
 	  		<?php endforeach; ?>

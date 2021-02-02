@@ -1,6 +1,11 @@
 <a href="javascript:;" class="add-modal btn btn-info btn-sm" data-toggle ="modal" data-target="#add-tb">
-     <i class="fa fa-plus"></i>
+     <i class="fa fa-plus"></i> Tambah Nilai
 </a>
+<form action="<?php echo base_url('admin/cetak/nilai');?>"  method="post">
+    <input type="hidden" name="id_kelas" value="<?php echo $id_kelas;?>">
+    <button type="submit" name="submit" class="btn btn-info">Cetak Nilai</button>
+</form>
+
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="add-tb" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -10,17 +15,7 @@
             </div>
             <form class="form-horizontal" action="<?php echo base_url('penilaian/add_nilai')?>" method="post" role="form">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label">Pertemuan</label>
-                        <div class="col-lg-8">
-                           <select name="id_penilaian" id="" class="form-control">
-                            <option value="">- Pilih Pertemuan -</option>
-                            <?php $no=1; foreach($pertemuan as $row){?>
-                                <option value="<?php echo $row->id;?>"> <?php echo date('d F, Y', strtotime($row->tgl));?> </option>
-                            <?php }?>
-                           </select>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label">Nama Siswa</label>
                         <div class="col-lg-8">
@@ -34,11 +29,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label">Nilai</label>
+                        <label class="col-lg-4 col-sm-4 control-label">Nilai Tugas</label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" name="score">
+                            <input type="text" class="form-control" name="nilai_tugas">
                             <input type="hidden" name="id_kelas" value="<?php echo $id_kelas;?>">
                             <input type="hidden" name="id_mapel" value="1">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Nilai Keaktifan</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" name="nilai_keaktifan">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Nilai Akhir</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" name="nilai_akhir">
 
                         </div>
                     </div>
@@ -86,45 +95,7 @@
 </div>
 
 <div class="box-body">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-solid">
-                <div class="panel-body" style="overflow-x:auto;">
-                    <table class="table" id="formData">
-                        <tbody>
-                            <!-- looping siswa -->
-                            <tr v-for="form in list_forms">
-                                <td style="width: 15%;"><span class="badge">{{form.nama_murid}}</span>&nbsp;&nbsp; NISN : {{form.nisn}}</td>
-                                <td>
-                                    <table cellspacing="2" cellpadding="2" class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <!-- looping bulan -->
-                                                <th v-for="row in form.nilai" >
-                                                    <span>Pertemuan ke - {{row.pertemuan}} Periode {{row.tgl}}</span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <!-- looping bulan + nilai -->
-                                                <td v-for="row in form.nilai">
-                                                    <span >
-                                                       {{row.score}}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <!-- end looping -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="row">
         <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -133,8 +104,9 @@
                         <th>No</th>
                         <th>NISN</th>
                         <th>Nama Murid</th>
-                        <th>Pertemuan</th>
-                        <th>Score</th>
+                        <th>Nilai Tugas</th>
+                        <th>Nilai Keaktifan</th>
+                        <th>Nilai Akhir</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -144,8 +116,9 @@
                     <td><?php echo $no++ ;?></td>
                     <td><?php echo $row->nisn ;?></td>
                     <td><?php echo $row->nama_murid ;?></td>
-                    <td><?php echo date('d F, Y', strtotime($row->tgl)) ;?></td>
-                    <td><?php echo $row->score ;?></td>
+                    <td><?php echo $row->nilai_tugas ;?></td>
+                    <td><?php echo $row->nilai_keaktifan ;?></td>
+                    <td><?php echo $row->nilai_akhir ;?></td>
                     <td>
                         <a  href                 ="<?php echo base_url('penilaian/edit_nilai/'.$row->id.'/'.$id_kelas);?>"
                             class="show-modal btn btn-info btn-sm">

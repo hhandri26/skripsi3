@@ -1,6 +1,8 @@
 <a href="javascript:;" class="add-modal btn btn-info btn-sm" data-toggle ="modal" data-target="#add-tb">
      <i class="fa fa-plus"></i>
 </a>
+
+
 <!-- modal add -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="add-tb" class="modal fade">
     <div class="modal-dialog">

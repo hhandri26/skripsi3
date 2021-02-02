@@ -14,19 +14,7 @@
                 
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
-            <div class="col-lg-8">
-                
-                <select class="form-control" id="id_matapelajaran" name="id_matapelajaran">
-                    <option value="<?php echo $edit->id_matapelajaran;?>"><?php echo $edit->nama_mapel;?></option>
-                <?php foreach($mapel as $row2){?>
-                    <option value="<?php echo $row2->id;?>"><?php echo $row2->nama_mapel;?></option>
-                <?php }?>
-                </select>
-                
-            </div>
-        </div>
+        
         <div class="form-group">
             <label class="col-lg-4 col-sm-4 control-label">Kelas</label>
             <div class="col-lg-8">
@@ -42,29 +30,30 @@
         </div>
 
         <div class="form-group">
-            <label class="col-lg-4 col-sm-4 control-label">Hari</label>
+            <label class="col-lg-4 col-sm-4 control-label">Materi</label>
             <div class="col-lg-8">
-                <select class="form-control" id="hari" name="hari">
-                    <option value="<?php echo $edit->hari;?>"><?php echo $edit->hari;?></option>
-                    <option value="Senen">Senen</option>
-                    <option value="Selasa">Selasa</option>
-                    <option value="Rabu">Rabu</option>
-                    <option value="Kamis">Kamis</option>
-                    <option value="Jum'at">Jum'at</option>
-                    <option value="Sabtu">Sabtu</option>
-                </select>
+                
+                    <select class="form-control" id="id_materi" name="id_materi">
+                        <option value="<?php echo $edit->id_materi;?>"><?php echo $edit->nama_materi;?></option>
+                    <?php foreach($kelas as $row3){?>
+                        <option value="<?php echo $row3->id;?>"><?php echo $row3->nama_ruangan;?></option>
+                        <?php }?>
+                    </select>
+                
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-lg-4 col-sm-4 control-label">Jam</label>
+            <label class="col-lg-4 col-sm-4 control-label">Tanggal Mulai</label>
             <div class="col-lg-8">
-                <select class="form-control" id="waktu" name="waktu">
-                    <option value="<?php echo $edit->waktu;?>"><?php echo $edit->waktu;?></option>
-                    <option value="jam ke 1">Jam ke 1</option>
-                    <option value="jam ke 2">Jam ke 2</option>
-                    <option value="jam ke 3">Jam ke 3</option>
-                </select>
+                <input type="date" name="date_start" id="date_start" value="<?php echo $edit->date_start;?>" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-4 col-sm-4 control-label">Tanggal Selesai</label>
+            <div class="col-lg-8">
+            <input type="date" name="date_end" id="date_end" value="<?php echo $edit->date_end;?>" class="form-control">
             </div>
         </div>
         

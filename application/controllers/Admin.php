@@ -13,6 +13,7 @@ class Admin extends CI_Controller
 				$this->load->model('security_models');
 				$this->load->model('master_models');
 				$this->load->model('crud_models');
+				$this->load->model('Penilaian_models');
 
 				$this->security_models->get_security();
 
@@ -64,10 +65,18 @@ class Admin extends CI_Controller
 					$data['classmeet']		= $this->admin_models->get_data_role()->result();
 					$html = $this->load->view('cetak/classmeet', $data, true);
 
-				}else{
+				}elseif($type=='nilai'){
+					
+					$id_kelas = $this->input->post('id_kelas');
+					$data['data']		=  $this->Penilaian_models->get_data_nilai($id_kelas)->result();
+					$html = $this->load->view('cetak/nilai', $data, true);
+
+				}
+				else{
 					$data['jadwal']		=$this->master_models->get_jadwal()->result();
 					$html = $this->load->view('cetak/jadwal', $data, true);
-				} 				
+				} 	
+				//$this->load->view('cetak/guru');			
 				$this->pdf->generate($html,'contoh');
 			}
 
@@ -82,6 +91,19 @@ class Admin extends CI_Controller
 				$html = $this->load->view('cetak/jadwal', $data, true);
 				$this->pdf->generate($html,'contoh');
 
+			}
+			public function nilai(){
+				$data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+				$data['kelas']                  = $this->crud_models->get_all_data('tb_ruangan')->result();
+				$data['script_top']    			= 'admin/script_top';
+				$data['script_bottom']  		= 'admin/script_btm';
+				$data['admin_nav']				= 'admin/admin_nav';
+				$data['judul'] 					= 'Penilaian';
+				$data['sub_judul'] 				= 'Pilih Kelas Untuk Input Nilai';
+				$data['content'] 				= 'penilaian/table';
+				$data['nav_top']				= 'nilai';
+				$data['nav_sub']				= 'nilai';
+				$this->load->view('admin/home', $data);
 			}
 			
 		}

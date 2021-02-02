@@ -17,7 +17,7 @@
     function go_diskusi(){
        var id_kelas =  $('#id_kelas').val();
        if(id_kelas !==''){           
-            window.location.href="<?php echo base_url('diskusi/start_diskusi/');?>" + id_kelas;
+            window.location.href="<?php echo base_url('diskusi/materi_diskusi/');?>" + id_kelas;
        }
     }
 

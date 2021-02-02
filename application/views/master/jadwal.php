@@ -23,13 +23,25 @@
                             
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
                         <div class="col-lg-8">
                             
                             <select class="form-control" id="id_matapelajaran" name="id_matapelajaran">
-                            <?php foreach($mapel as $row2){?>
-                                <option value="<?php echo $row2->id;?>"><?php echo $row2->nama_mapel;?></option>
+                            <?php //foreach($mapel as $row2){?>
+                                <option value="<?php //echo $row2->id;?>"><?php //echo //$row2->nama_mapel;?></option>
+                            <?php //}?>
+                            </select>
+                            
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Materi Pelajaran</label>
+                        <div class="col-lg-8">
+                            
+                            <select class="form-control" id="id_materi" name="id_materi">
+                            <?php foreach($materi as $row2){?>
+                                <option value="<?php echo $row2->id;?>"><?php echo $row2->nama;?></option>
                             <?php }?>
                             </select>
                             
@@ -49,27 +61,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label">Hari</label>
+                        <label class="col-lg-4 col-sm-4 control-label">Tanggal Mulai</label>
                         <div class="col-lg-8">
-                            <select class="form-control" id="hari" name="hari">
-                                <option value="Senen">Senen</option>
-                                <option value="Selasa">Selasa</option>
-                                <option value="Rabu">Rabu</option>
-                                <option value="Kamis">Kamis</option>
-                                <option value="Jum'at">Jum'at</option>
-                                <option value="Sabtu">Sabtu</option>
-                            </select>
+                           <input type="date" name="date_start" id="date_start" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label">Jam</label>
+                        <label class="col-lg-4 col-sm-4 control-label">Tanggal Selesai</label>
                         <div class="col-lg-8">
-                            <select class="form-control" id="waktu" name="waktu">
-                                <option value="jam ke 1">Jam ke 1</option>
-                                <option value="jam ke 2">Jam ke 2</option>
-                                <option value="jam ke 3">Jam ke 3</option>
-                            </select>
+                        <input type="date" name="date_end" id="date_end" class="form-control">
                         </div>
                     </div>
                     
@@ -92,8 +93,8 @@
             <th>Nama Guru</th>
             <th>Mata Pelajaran</th>
             <th>Kelas</th>
-            <th>Hari</th>
-            <th>jam</th>
+            <th>Tanggal Mulai</th>
+            <th>Tanggal Selesai</th>
             <th>Aksi</th>
             </tr>
         </thead>
@@ -104,8 +105,8 @@
             <td><?php echo $row->nama_guru ;?></td>
             <td><?php echo $row->nama_mapel ;?></td>
             <td><?php echo $row->kelas ;?></td>
-            <td><?php echo $row->hari ;?></td>
-            <td><?php echo $row->waktu ;?></td>
+            <td><?php echo $row->date_start ;?></td>
+            <td><?php echo $row->date_end ;?></td>
             <td>
                 <a href="<?php echo base_url('master/edit_jadwal/'.$row->id);?>" class="btn btn-info btn-sm">
                     <i class="glyphicon glyphicon-pencil"></i> 

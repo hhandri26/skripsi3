@@ -3,14 +3,22 @@ class Master_models extends CI_Model
 {
 
     public function get_table_guru(){
-        $this->db->select('a.id, a.alamat, a.tgl_lahir, a.kd_guru, a.nama_guru, a.jenis_kelamin, a.mapel, b.nama_mapel');
+        $this->db->select('a.id, a.alamat, a.tgl_lahir, a.kd_guru, a.nama_guru, a.jenis_kelamin, a.mapel,a.email,a.no_tlpn,a.agama, b.nama_mapel');
         $this->db->from('tb_guru a');
         $this->db->join('tb_mapel b','b.id = a.mapel','left');
         return $this->db->get();
     }
 
+    public function get_edit_guru($id){
+        $this->db->select('a.id, a.alamat, a.tgl_lahir, a.kd_guru, a.nama_guru, a.jenis_kelamin, a.mapel,a.email,a.no_tlpn,a.agama, b.nama_mapel, b.id as id_mapel');
+        $this->db->from('tb_guru a');
+        $this->db->where('a.id',$id);
+        $this->db->join('tb_mapel b','b.id = a.mapel','left');
+        return $this->db->get();
+    }
+
     public function get_data_murid(){
-        $this->db->select('a.id, a.nisn, a.nama_murid, a.alamat, a.tgl_lahir, a.jenis_kelamin, a.kelas, b.nama_ruangan');
+        $this->db->select('a.id, a.nisn, a.nama_murid, a.alamat, a.tgl_lahir, a.jenis_kelamin, a.kelas, b.nama_ruangan,a.agama,a.tempat_lahir,b.nama_ruangan');
         $this->db->from('tb_murid a');
         $this->db->join('tb_ruangan b','b.id = a.kelas','left');
         return $this->db->get();
@@ -18,7 +26,7 @@ class Master_models extends CI_Model
     }
 
     public function get_jadwal(){
-        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel');
+        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel,a.date_start,a.date_end, DATE_FORMAT(a.date_start,"%d-%m-%Y") AS tgl_mulai, DATE_FORMAT(a.date_end,"%d-%m-%Y") AS tgl_selesai');
         $this->db->from('tb_jadwal a');
         $this->db->join('tb_ruangan b','b.id = a.id_kelas','left');
         $this->db->join('tb_guru c','c.id = a.id_guru','left');
@@ -29,17 +37,18 @@ class Master_models extends CI_Model
 
     public function get_data_jadwal($id)
     {
-        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel');
+        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel,a.date_start,a.date_end,e.nama as nama_materi,a.id_materi');
         $this->db->from('tb_jadwal a');
         $this->db->join('tb_ruangan b','b.id = a.id_kelas','left');
         $this->db->join('tb_guru c','c.id = a.id_guru','left');
         $this->db->join('tb_mapel d','d.id = a.id_matapelajaran','left');
+        $this->db->join('tbl_materi e','e.id = a.id_materi','left');
         $this->db->where('a.id',$id);
         return $this->db->get();
     }
 
     public function get_jadwal_murid($id){
-        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel');
+        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel,a.date_start,a.date_end');
         $this->db->from('tb_jadwal a');
         $this->db->join('tb_ruangan b','b.id = a.id_kelas','left');
         $this->db->join('tb_guru c','c.id = a.id_guru','left');
@@ -50,7 +59,7 @@ class Master_models extends CI_Model
     }
 
     public function get_jadwal_guru($id){
-        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel');
+        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel,a.date_start,a.date_end');
         $this->db->from('tb_jadwal a');
         $this->db->join('tb_ruangan b','b.id = a.id_kelas','left');
         $this->db->join('tb_guru c','c.id = a.id_guru','left');
@@ -80,7 +89,7 @@ class Master_models extends CI_Model
     }
 
     public function get_materi(){
-        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file , b.nama_mapel, c.nama_ruangan');
+        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file ,a.deskripsi , b.nama_mapel, c.nama_ruangan');
         $this->db->from('tbl_materi a');
         $this->db->join('tb_mapel b','b.id = a.id_mapel','left');
         $this->db->join('tb_ruangan c','c.id = a.id_kelas','left');
@@ -89,7 +98,7 @@ class Master_models extends CI_Model
     }
 
     public function get_materi_by($id_kelas){
-        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file , b.nama_mapel, c.nama_ruangan');
+        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file , b.nama_mapel, c.nama_ruangan,a.deskripsi');
         $this->db->from('tbl_materi a');
         $this->db->join('tb_mapel b','b.id = a.id_mapel','left');
         $this->db->join('tb_ruangan c','c.id = a.id_kelas','left');
@@ -100,7 +109,7 @@ class Master_models extends CI_Model
     }
 
     public function get_materi_edit($id){
-        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file ,b.id as id_mapel, b.nama_mapel, c.nama_ruangan');
+        $this->db->select('a.id, a.id_mapel, a.id_kelas, a.nama, a.file ,b.id as id_mapel, b.nama_mapel, c.nama_ruangan,a.deskripsi');
         $this->db->from('tbl_materi a');
         $this->db->join('tb_mapel b','b.id = a.id_mapel','left');
         $this->db->join('tb_ruangan c','c.id = a.id_kelas','left');

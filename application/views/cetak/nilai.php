@@ -74,17 +74,23 @@
 	  	<thead>
 	  		<tr>
 	  			<th class="short">No</th>
-	  			<th class="normal">Kode Ruangan</th>
-	  			<th class="normal">Nama Ruangan</th>
+	  			<th class="normal">NISN</th>
+	  			<th class="normal">Nama Murid</th>
+	  			<th class="short">Nilai Tugas</th>
+          <th class="short">Nilai Keaktifan</th>
+          <th class="short">Nilai Akhir</th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
 	  		<?php $no=1; ?>
-	  		<?php foreach($ruangan as $row): ?>
+	  		<?php foreach($data as $row): ?>
 	  		  <tr>
-	  			<td><?php echo $no; ?></td>
-	  			<td><?php echo $row->kd_ruangan; ?></td>
-	  			<td><?php echo $row->nama_ruangan; ?></td>
+              <td><?php echo $no++ ;?></td>
+              <td><?php echo $row->nisn ;?></td>
+              <td><?php echo $row->nama_murid ;?></td>
+              <td><?php echo $row->nilai_tugas ;?></td>
+              <td><?php echo $row->nilai_keaktifan ;?></td>
+              <td><?php echo $row->nilai_akhir ;?></td>
 	  		  </tr>
 	  		<?php $no++; ?>
 	  		<?php endforeach; ?>

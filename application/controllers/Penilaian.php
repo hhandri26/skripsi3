@@ -81,7 +81,9 @@ class Penilaian extends CI_Controller {
             "id_siswa"     => $this->input->post('id_siswa'),
             "id_mapel"	   => $this->input->post('id_mapel'),
             "id_kelas"     => $this->input->post('id_kelas'),
-            "score"        =>$this->input->post('score')
+            "nilai_tugas"        =>$this->input->post('nilai_tugas'),
+            "nilai_keaktifan"    =>$this->input->post('nilai_keaktifan'),
+            "nilai_akhir"        =>$this->input->post('nilai_akhir'),
         );
 
         if($this->crud_models->add_data($data,'tbl_penilaian_siswa')){
@@ -120,7 +122,9 @@ class Penilaian extends CI_Controller {
             "id_siswa"     => $this->input->post('id_siswa'),
             "id_mapel"	   => $this->input->post('id_mapel'),
             "id_kelas"     => $this->input->post('id_kelas'),
-            "score"        =>$this->input->post('score')
+            "nilai_tugas"        =>$this->input->post('nilai_tugas'),
+            "nilai_keaktifan"    =>$this->input->post('nilai_keaktifan'),
+            "nilai_akhir"        =>$this->input->post('nilai_akhir'),
         );
 
         if($this->crud_models->edit_data($data, $id,'tbl_penilaian_siswa')){

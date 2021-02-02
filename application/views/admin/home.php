@@ -12,7 +12,8 @@
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="index2.html" class="logo">
+  <a href="index2.html" class="logo" style="display: flex;">
+      <img src="<?php echo base_url();?>/assets/img/Logo-smkn_1_Rangkasbitung.jpg" style="width: 40px;margin-right: 10px" alt="User Image">
       <span class="logo-mini"><b>A</b>DM</span>
       <span class="logo-lg"><b><?php echo $this->session->userdata('username');?></b></span>
     </a>
@@ -21,6 +22,9 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Menu</span>
       </a>
+      <span style="padding-top: 10px;position: absolute;color: #fff;font-size: 20px;">
+      SMKN 1 Rangkas Bitung
+      </span>
       <!-- Navbar Right Menu -->
      
       <div class="navbar-custom-menu">

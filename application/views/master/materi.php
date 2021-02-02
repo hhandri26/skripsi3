@@ -49,6 +49,14 @@
                             <input type="file" class="form-control" id="file" name="file">                           
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Deskripsi Materi</label>
+                        <div class="col-lg-8">  
+                            <textarea name="" id="" cols="30" rows="10" class="form-control" name="deskripsi"></textarea>                      
+                                                 
+                        </div>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -90,6 +98,58 @@
         </div>
     </div>
 </div>
+<!-- modal view -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="view-tb" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Lihat</h4>
+            </div>
+            <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                   
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Kelas & Ruangan</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="nama_ruangan" name="nama" readonly="">      
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="nama_mapel" name="nama" readonly="">      
+                        </div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Nama Materi</label>
+                        <div class="col-lg-8">                        
+                            <input type="text" class="form-control" id="nama" name="nama" readonly="">                           
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Deskripsi Materi</label>
+                        <div class="col-lg-8">  
+                        <input type="text" class="form-control" id="deskripsi" name="nama" readonly="">  
+                          
+                                                 
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Tutup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="box-body">
     <table id="example1" class="table table-bordered table-striped">
@@ -99,9 +159,9 @@
                 <th>Kelas</th>
                 <th>Mata Pelajaran</th>
                 <th>Nama Materi</th>
-                <?php if($this->session->userdata('level') !== null || $this->session->userdata('kd_guru') !== null ){;?>
+                <th>Deskripsi</th>
+                
                 <th>Aksi</th>
-                <?php }?>
             </tr>
         </thead>
         <tbody>
@@ -110,6 +170,7 @@
             <td><?php echo $no++ ;?></td>
             <td><?php echo $row->nama_ruangan ;?></td>
             <td><?php echo $row->nama_mapel ;?></td>
+            <td><?php echo $row->deskripsi ;?></td>
             <td> <a href="<?php echo base_url('assets/materi/'.$row->file);?>" target="_blank"> <?php echo $row->nama ;?> </a></td>
             <?php if($this->session->userdata('level') !== null || $this->session->userdata('kd_guru') !== null ){;?>
             <td>
@@ -125,8 +186,35 @@
                     class="show-modal btn btn-danger btn-sm">
                     <i class="fa fa-trash"></i> 
                 </a>
+                <a  href                 ="javascript:;"
+                    data-id              ="<?php echo $row->id ?>"
+                    data-nama            ="<?php echo $row->nama ?>"
+                    data-nama_mapel      ="<?php echo $row->nama_mapel ?>"
+                    data-nama_ruangan    ="<?php echo $row->nama_ruangan ?>"
+                    data-deskripsi       ="<?php echo $row->deskripsi ?>"
+                    data-toggle          ="modal"
+                    data-target          ="#view-tb"
+                    class="show-modal btn btn-info btn-sm">
+                    <i class="fa fa-eye"></i> 
+                </a>
             </td>
-            <?php }?>
+            <?php }elseif($this->session->userdata('kelas')){?>
+            <td>
+            <a  href                 ="javascript:;"
+                    data-id              ="<?php echo $row->id ?>"
+                    data-nama            ="<?php echo $row->nama ?>"
+                    data-nama_mapel      ="<?php echo $row->nama_mapel ?>"
+                    data-nama_ruangan    ="<?php echo $row->nama_ruangan ?>"
+                    data-deskripsi       ="<?php echo $row->deskripsi ?>"
+                    data-toggle          ="modal"
+                    data-target          ="#view-tb"
+                    class="show-modal btn btn-info btn-sm">
+                    <i class="fa fa-eye"></i> 
+                </a>
+            </td>
+                
+
+            <?php };?>
             </tr>
         <?php } ?>
         </tbody>
@@ -140,6 +228,15 @@
             var modal   = $(this)
             modal.find('#id').attr("value",div.data('id'));
             modal.find('#nama').attr("value",div.data('nama'));
+        });
+
+        $('#view-tb').on('show.bs.modal', function (event) {
+            var div     = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#nama_mapel').attr("value",div.data('nama_mapel'));
+            modal.find('#nama_ruangan').attr("value",div.data('nama_ruangan'));
+            modal.find('#deskripsi').attr("value",div.data('deskripsi'));
         });
     });
 </script>

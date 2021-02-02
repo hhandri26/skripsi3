@@ -42,6 +42,9 @@ class Master extends CI_Controller
                     "mapel" => $this->input->post('mapel'),
                     "alamat" => $this->input->post('alamat'),
                     "tgl_lahir" => $this->input->post('tgl_lahir'),
+                    "email" => $this->input->post('email'),
+                    "no_tlpn" => $this->input->post('no_tlpn'),
+                    "agama" => $this->input->post('agama'),
                     "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                 );
 
@@ -56,6 +59,21 @@ class Master extends CI_Controller
 
             }
 
+            public function form_edit_guru($id){
+                $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+                $data['edit']                   = $this->master_models->get_edit_guru($id)->row();
+                $data['mapel']                  = $this->crud_models->get_all_data('tb_mapel')->result();
+				$data['script_top']    			= 'admin/script_top';
+				$data['script_bottom']  		= 'admin/script_btm';
+				$data['admin_nav']				= 'admin/admin_nav';
+				$data['judul'] 					= 'Master';
+				$data['sub_judul'] 				= 'Guru';
+				$data['content'] 				= 'master/edit_guru';
+				$data['nav_top']				= 'master';
+				$data['nav_sub']				= 'guru';
+				$this->load->view('admin/home', $data);
+            }
+
             public function edit_guru()
             {
                 $id 		= $this->input->post('id');
@@ -66,6 +84,9 @@ class Master extends CI_Controller
                                         "mapel" => $this->input->post('mapel'),
                                         "alamat" => $this->input->post('alamat'),
                                         "tgl_lahir" => $this->input->post('tgl_lahir'),
+                                        "email" => $this->input->post('email'),
+                                        "no_tlpn" => $this->input->post('no_hp'),
+                                        "agama" => $this->input->post('agama'),
                                         "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                                     );
 
@@ -253,6 +274,8 @@ class Master extends CI_Controller
                     "kelas" => $this->input->post('kelas'),
                     "alamat" => $this->input->post('alamat'),
                     "tgl_lahir" => $this->input->post('tgl_lahir'),
+                    "agama" => $this->input->post('agama'),
+                    "tempat_lahir" => $this->input->post('tempat_lahir'),
                     "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                 );
 
@@ -275,6 +298,8 @@ class Master extends CI_Controller
                                         "nama_murid" => $this->input->post('nama_murid'),
                                         "alamat" => $this->input->post('alamat'),
                                         "tgl_lahir" => $this->input->post('tgl_lahir'),
+                                        "agama" => $this->input->post('agama'),
+                                        "tempat_lahir" => $this->input->post('tempat_lahir'),
                                         "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                                     );
 
@@ -306,6 +331,7 @@ class Master extends CI_Controller
             public function jadwal()
             {
                 $data['guru']                   =$this->crud_models->get_all_data('tb_guru')->result();
+                $data['materi']                   =$this->crud_models->get_all_data('tbl_materi')->result();
                 $data['mapel']                  =$this->crud_models->get_all_data('tb_mapel')->result();
                 $data['kelas']                  =$this->crud_models->get_all_data('tb_ruangan')->result();
                 $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
@@ -328,9 +354,10 @@ class Master extends CI_Controller
                 $data = array(
                     "id_kelas"	        => $this->input->post('id_kelas'),
                     "id_guru"           => $this->input->post('id_guru'),
-                    "id_matapelajaran"	=> $this->input->post('id_matapelajaran'),
-                    "hari"              => $this->input->post('hari'),
-                    "waktu"             => $this->input->post('waktu')
+                    "id_matapelajaran"	=> 1,
+                    "date_start"              => $this->input->post('date_start'),
+                    "date_end"             => $this->input->post('date_end'),
+                    "id_materi"             => $this->input->post('id_materi')
                 );
 
                 if($this->crud_models->add_data($data,'tb_jadwal')){
@@ -369,9 +396,12 @@ class Master extends CI_Controller
                 $data = array(
                     "id_kelas"	        => $this->input->post('id_kelas'),
                     "id_guru"           => $this->input->post('id_guru'),
-                    "id_matapelajaran"	=> $this->input->post('id_matapelajaran'),
+                    "id_matapelajaran"	=> 1,
                     "hari"              => $this->input->post('hari'),
-                    "waktu"             => $this->input->post('waktu')
+                    "waktu"             => $this->input->post('waktu'),
+                    "date_start"              => $this->input->post('date_start'),
+                    "date_end"             => $this->input->post('date_end'),
+                    "id_materi"             => $this->input->post('id_materi')
                 );
 
                 if($this->crud_models->edit_data($data,$id,'tb_jadwal')){
@@ -535,6 +565,7 @@ class Master extends CI_Controller
                         "id_mapel"	=> $this->input->post('id_mapel'),
                         "id_kelas"  => $this->input->post('id_kelas'),
                         "nama"	    => $this->input->post('nama'),
+                        "deskripsi"	    => $this->input->post('deskripsi'),
                         "file"      => $nama_file
                     );
     
@@ -598,6 +629,7 @@ class Master extends CI_Controller
                     "id_mapel"	=> $this->input->post('id_mapel'),
                     "id_kelas"  => $this->input->post('id_kelas'),
                     "nama"	    => $this->input->post('nama'),
+                    "deskripsi"	    => $this->input->post('deskripsi'),
                     "file"      => $nama_file
                 );
 

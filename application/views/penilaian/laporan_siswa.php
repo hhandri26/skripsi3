@@ -4,16 +4,18 @@
             <tr>
                 <th>No</th>
               
-                <th>Pertemuan</th>
-                <th>Score</th>
+                <th>Nilai Tugas</th>
+                <th>Nilai Keaktifan</th>
+                <th>Nilai Akhir</th>
             </tr>
         </thead>
         <tbody>
         <?php $no=1; foreach ($table as $row ) {?>
             <tr>
             <td><?php echo $no++ ;?></td>
-            <td><?php echo date('d F, Y', strtotime($row->tgl)) ;?></td>
-            <td><?php echo $row->score ;?></td>
+            <td><?php echo $row->nilai_tugas ;?></td>
+            <td><?php echo $row->nilai_keaktifan ;?></td>
+            <td><?php echo $row->nilai_akhir ;?></td>
             
             </tr>
         <?php } ?>

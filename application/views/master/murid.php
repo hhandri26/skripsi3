@@ -54,6 +54,18 @@
                                 <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">agama</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="agama" name="agama">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">tempat lahir</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                            </div>
+                        </div>
                 </div>
                 <div class="modal-footer">
                    
@@ -119,6 +131,18 @@
                                 <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">agama</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="agama" name="agama">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">tempat lahir</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                            </div>
+                        </div>
                     </div>
                 <div class="modal-footer">
                     
@@ -159,6 +183,83 @@
     </div>
 </div>
 
+<!-- modal view -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="view-data" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Lihat</h4>
+            </div>
+            <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">NISN</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="nisn" name="nisn" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Nama Murid</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="nama_murid" name="nama_murid" readonly="">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Kelas & Ruangan</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Alamat</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="alamat" name="alamat"  readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Tgl Lahir</label>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"  readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">agama</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="agama" name="agama"  readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">tempat lahir</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"  readonly="">
+                        </div>
+                    </div>
+                       
+                      
+                        
+                    
+                   
+                      
+                     
+                       
+                       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="box-body">
     <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -186,11 +287,29 @@
                     data-id              ="<?php echo $row->id ?>"
                     data-tgl_lahir       ="<?php echo $row->tgl_lahir ?>"
                     data-alamat          ="<?php echo $row->alamat ?>"
+                    data-agama          ="<?php echo $row->agama ?>"
+                    data-tempat_lahir          ="<?php echo $row->tempat_lahir ?>"
                     
                     data-toggle          ="modal"
                     data-target          ="#edit-data"
                     class="show-modal btn btn-info btn-sm">
                     <i class="glyphicon glyphicon-pencil"></i> 
+                </a>
+                
+                <a  href                    ="javascript:;"
+                    data-nisn               ="<?php echo $row->nisn ?>"
+                    data-nama_murid         ="<?php echo $row->nama_murid ?>"
+                    data-id                 ="<?php echo $row->id ?>"
+                    data-tgl_lahir          ="<?php echo $row->tgl_lahir ?>"
+                    data-alamat             ="<?php echo $row->alamat ?>"
+                    data-agama              ="<?php echo $row->agama ?>"
+                    data-tempat_lahir       ="<?php echo $row->tempat_lahir ?>" 
+                    data-jenis_kelamin       ="<?php echo $row->jenis_kelamin ?>" 
+                    data-nama_ruangan       ="<?php echo $row->nama_ruangan ?>" 
+                    data-toggle             ="modal"
+                    data-target             ="#view-data"
+                    class="show-modal btn btn-info btn-sm">
+                    <i class="fa fa-eye"></i> 
                 </a>
 
                 <a  href                 ="javascript:;"
@@ -220,6 +339,8 @@
             modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
              modal.find('#alamat').attr("value",div.data('alamat'));
             modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
+            modal.find('#agama').attr("value",div.data('agama'));
+            modal.find('#tempat_lahir').attr("value",div.data('tempat_lahir'));
            
         });
 
@@ -230,6 +351,23 @@
             modal.find('#id').attr("value",div.data('id'));
             modal.find('#nama_murid').attr("value",div.data('nama_murid'));
            
+           
+        });
+
+        $('#view-data').on('show.bs.modal', function (event) {
+            var div     = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#nisn').attr("value",div.data('nisn'));
+            modal.find('#nama_murid').attr("value",div.data('nama_murid'));
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#alamat').attr("value",div.data('alamat'));
+            modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
+             modal.find('#alamat').attr("value",div.data('alamat'));
+            modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
+            modal.find('#agama').attr("value",div.data('agama'));
+            modal.find('#tempat_lahir').attr("value",div.data('tempat_lahir'));
+            modal.find('#jenis_kelamin').attr("value",div.data('jenis_kelamin'));
+            modal.find('#nama_ruangan').attr("value",div.data('nama_ruangan'));
            
         });
     });
